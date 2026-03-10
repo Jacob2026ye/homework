@@ -3,6 +3,9 @@ public class ERyder {
     private int batteryLevel;
     private boolean isAvailable;
     private double kmDriven;
+    private String LINKED_ACCOUNT;
+    private String LINKED_PAYMENT_METHOD;
+    private double totalFare;
     
 
     public ERyder() {
@@ -18,6 +21,17 @@ public class ERyder {
         this.batteryLevel = batteryLevel;
         this.isAvailable = isAvailable;
         this.kmDriven = kmDriven;
+     }
+
+
+
+         public ERyder(int bikeID,int batteryLevel,boolean isAvailable,double kmDriven,String LINKED_ACCOUNT,String LINKED_PAYMENT_METHOD) {
+        this.bikeID = bikeID;
+        this.batteryLevel = batteryLevel;
+        this.isAvailable = isAvailable;
+        this.kmDriven = kmDriven;
+        LINKED_ACCOUNT = LINKED_ACCOUNT;
+        LINKED_PAYMENT_METHOD = LINKED_PAYMENT_METHOD;
     }
     public void ride(){
         if (isAvailable && batteryLevel > 0) {
@@ -44,7 +58,23 @@ public class ERyder {
         System.out.println("====================");
     }
     
-    
+    public void printRideDetails(int useageInMinutes){
+        System.out.println("Linked Account: " + LINKED_ACCOUNT);
+        System.out.println("Linked Phone Number: " + LINKED_PAYMENT_METHOD);
+        System.out.println("bikeID: " + bikeID  );
+        System.out.println("Usage Time: " + useageInMinutes + " minutes");
+        System.out.println("total fare:"+ calculateFare(useageInMinutes) + " dollars"  );
+       
+      
+
+    }
+    private static final double BASE_FARE = 2.0; // example base fare
+    private static final double PER_MINUTE_RATE = 0.5; // example per minute rate
+
+    private double calculateFare(int usageInMinutes) {
+       totalFare = BASE_FARE + (PER_MINUTE_RATE * usageInMinutes);
+       return totalFare;
+    }
     
     public int getBikeID() {
         return bikeID;
