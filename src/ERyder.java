@@ -30,9 +30,9 @@ public class ERyder {
         this.batteryLevel = batteryLevel;
         this.isAvailable = isAvailable;
         this.kmDriven = kmDriven;
-        LINKED_ACCOUNT = LINKED_ACCOUNT;
-        LINKED_PAYMENT_METHOD = LINKED_PAYMENT_METHOD;
-    }
+        
+          
+        }
     public void ride(){
         if (isAvailable && batteryLevel > 0) {
             System.out.println("Riding the bike...");
