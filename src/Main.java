@@ -12,7 +12,10 @@ public class Main {
         paramBike.printBikeDetails();
 
 
-
+        
+        AdminPanel adminPanel = new AdminPanel();
+        adminPanel.userManagementOptions();
+    
 
   
     }
