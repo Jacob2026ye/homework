@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 public class UserSrvice {
-private ArrayList<RegisteredUsers> registeredUsersList = new ArrayList<>();
+    private ArrayList<RegisteredUsers> registeredUsersList = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
     public void addUsers() {
@@ -167,10 +167,10 @@ private ArrayList<RegisteredUsers> registeredUsersList = new ArrayList<>();
         }
 
         System.out.print("Type new card number: (Enter 0 for no change) ");
-        long cardNumber = scanner.nextLong();
+        String cardNumber = scanner.nextLine();
         scanner.nextLine();
-        if (cardNumber != 0) {
-            registeredUser.setCardNumber(cardNumber);
+        if (!cardNumber.isEmpty() && !"0".equals(cardNumber)) {
+            registeredUser.setCardProvider(cardNumber);
         }
 
         System.out.print("Type new card provider: (Press ENTER for no change) ");
@@ -186,9 +186,9 @@ private ArrayList<RegisteredUsers> registeredUsersList = new ArrayList<>();
         }
 
         System.out.print("Type new CVV: (Enter 0 for no change) ");
-        int cvv = scanner.nextInt();
+        String cvv = scanner.nextLine();
         scanner.nextLine();
-        if (cvv != 0) {
+        if (!expiry.isEmpty()) {
             registeredUser.setCvv(cvv);
         }
 
