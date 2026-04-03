@@ -3,9 +3,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 public class AdminPanel {
-private List<RegisteredUsers> registeredUsersList = new ArrayList<>();
+    private BikesService bikesService;
+    private List<RegisteredUsers> registeredUsersList = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
-
+    public AdminPanel (BikesService bikesService){
+        this.bikesService =bikesService;
+    }
     public void userManagementOptions() {
         while (true) {
             System.out.println("Welcome to E-Ryder Admininstrator Panel.");
@@ -177,7 +180,7 @@ private List<RegisteredUsers> registeredUsersList = new ArrayList<>();
         System.out.print("Type new card number: (Enter '0' for no change) ");
         String cardNumber = scanner.nextLine();
         if (!cardNumber.equals("0")) {
-            userToUpdate.setCardNumber(cardNumber);
+            userToUpdate.setCardProvider(cardNumber);
         }
 
         System.out.print("Type new card provider: (Press ENTER for no change) ");
@@ -206,4 +209,68 @@ private List<RegisteredUsers> registeredUsersList = new ArrayList<>();
 
         System.out.println("User updated successfully!");
     }
+
+
+
+     public void showAdminMenu() {
+        while (true) {
+            System.out.println("\n=== Admin Panel ===");
+            System.out.println("1. View System Logs");
+            System.out.println("2. Manage Pending Bike Requests");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // 消耗换行符
+
+            switch (choice) {
+                case 1:
+                    // 查看系统日志
+                    bikesService.viewSystemLogs();
+                    break;
+                case 2:
+                    // 管理待处理请求
+                    manageBikeRequests();
+                    break;
+                case 3:
+                    System.out.println("Exiting admin panel...");
+                    return;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+            }
+        }
+    }
+
+    /**
+     * 管理待处理请求子菜单
+     */
+    private void manageBikeRequests() {
+        while (true) {
+            System.out.println("\n=== Manage Pending Bike Requests ===");
+            System.out.println("1. View Queue");
+            System.out.println("2. Update Queue");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    // 查看队列
+                    bikesService.viewBikeRequests();
+                    break;
+                case 2:
+                    // 更新队列（移除第一个请求）
+                    bikesService.updateQueue();
+                    break;
+                case 3:
+                    System.out.println("Returning to main menu...");
+                    return;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+            }
+        }
+    }
+
 }

@@ -2,24 +2,29 @@ public class RegisteredUsers {
 private String fullName;
     private String emailAddress;
     private String dateOfBirth;
-    private String cardNumber;
+    private long cardNumber;
     private String cardExpiryDate;
     private String cardProvider;
-    private String cvv;
+    private int cvv;
     private String userType;
     private String[] lastThreeTrips;
 
-    public RegisteredUsers(String fullName, String emailAddress, String dateOfBirth, String cardNumber,
-                            String cardExpiryDate, String cardProvider, String cvv, String userType, String[] lastThreeTrips) {
+    public RegisteredUsers(String fullName, String emailAddress, String dateOfBirth, String cardNumber2,
+                            String cardExpiryDate, String cardProvider, String cvv2, String userType, String[] lastThreeTrips) {
         this.fullName = fullName;
         this.emailAddress = emailAddress;
         this.dateOfBirth = dateOfBirth;
-        this.cardNumber = cardNumber;
+        this.cardNumber = Long.parseLong(cardNumber2);
         this.cardExpiryDate = cardExpiryDate;
         this.cardProvider = cardProvider;
-        this.cvv = cvv;
+        this.cvv = Integer.parseInt(cvv2);
         this.userType = userType;
         this.lastThreeTrips = lastThreeTrips;
+    }
+
+    public RegisteredUsers(String fullName2, String emailAddress2, String dateOfBirth2, long cardNumber2,
+            String cardExpiryDate2, String cardProvider2, int cvv2, String userType2, String[] lastThreeTrips2) {
+        //TODO Auto-generated constructor stub
     }
 
     public String getFullName() {
@@ -46,12 +51,12 @@ private String fullName;
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getCardNumber() {
+    public long getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setCardNumber(long cardNumber2) {
+        this.cardNumber = cardNumber2;
     }
 
     public String getCardExpiryDate() {
@@ -70,12 +75,12 @@ private String fullName;
         this.cardProvider = cardProvider;
     }
 
-    public String getCvv() {
+    public int getCvv() {
         return cvv;
     }
 
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
+    public void setCvv(int cvv2) {
+        this.cvv = cvv2;
     }
 
     public String getUserType() {
@@ -110,5 +115,10 @@ private String fullName;
             sb.append("- ").append(trip).append("\n");
         }
         return sb.toString();
+    }
+
+    public void setCvv(String cvv2) {
+       
+        throw new UnsupportedOperationException("Unimplemented method 'setCvv'");
     }
 }

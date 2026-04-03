@@ -13,10 +13,21 @@ public class Main {
 
 
         
-        AdminPanel adminPanel = new AdminPanel();
+        AdminPanel adminPanel = new AdminPanel(null);
         adminPanel.userManagementOptions();
     
+      
+        // 初始化自行车服务
+        BikesService bike = new BikesService("BIKE001", true, "Downtown");
 
+    
+        bike.reserveBike("user2@example.com"); 
+        bike.removeTrip(); 
+
+        // 启动管理员面板
+        AdminPanel admin = new AdminPanel(bike);
+        admin.showAdminMenu();
+ 
   
     }
 
