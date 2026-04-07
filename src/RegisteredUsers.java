@@ -8,7 +8,7 @@ private String fullName;
     private int cvv;
     private String userType;
     private String[] lastThreeTrips;
-
+    
     public RegisteredUsers(String fullName, String emailAddress, String dateOfBirth, String cardNumber2,
                             String cardExpiryDate, String cardProvider, String cvv2, String userType, String[] lastThreeTrips) {
         this.fullName = fullName;
@@ -24,7 +24,27 @@ private String fullName;
 
     public RegisteredUsers(String fullName2, String emailAddress2, String dateOfBirth2, long cardNumber2,
             String cardExpiryDate2, String cardProvider2, int cvv2, String userType2, String[] lastThreeTrips2) {
-        //TODO Auto-generated constructor stub
+        this.fullName = fullName2;
+        this.emailAddress = emailAddress2;
+        this.dateOfBirth = dateOfBirth2;
+        this.cardNumber = cardNumber2;
+        this.cardExpiryDate = cardExpiryDate2;
+        this.cardProvider = cardProvider2;
+        this.cvv = cvv2;
+        this.userType = userType2;
+        this.lastThreeTrips = lastThreeTrips2;
+    }
+
+    public RegisteredUsers(String fullName, String emailAddress) {
+        this.fullName = fullName;
+        this.emailAddress = emailAddress;
+        this.dateOfBirth = "";
+        this.cardNumber = 0L;
+        this.cardExpiryDate = "";
+        this.cardProvider = "";
+        this.cvv = 0;
+        this.userType = "Regular";
+        this.lastThreeTrips = new String[0];
     }
 
     public String getFullName() {
@@ -79,8 +99,8 @@ private String fullName;
         return cvv;
     }
 
-    public void setCvv(int cvv2) {
-        this.cvv = cvv2;
+    public void setCvv(String cvv2) {
+        this.cvv = Integer.parseInt(cvv2);
     }
 
     public String getUserType() {
@@ -97,6 +117,45 @@ private String fullName;
 
     public void setLastThreeTrips(String[] lastThreeTrips) {
         this.lastThreeTrips = lastThreeTrips;
+    }
+      public double calculateFare(double baseFare) {
+        return baseFare;
+      }
+        public void displayUserType() {
+        
+    }
+   public class RegularUser extends RegisteredUsers {
+
+   
+    public RegularUser(String fullName, String emailAddress) {
+        super(fullName, emailAddress, emailAddress, emailAddress, emailAddress, emailAddress, emailAddress, emailAddress, lastThreeTrips);
+    }
+
+  
+    @Override
+    public double calculateFare(double baseFare) {
+        return baseFare;
+    }
+
+    @Override
+    public void displayUserType() {
+        System.out.println("Regular User");
+    }
+}
+public class VIPUser extends RegisteredUsers {
+
+    public VIPUser(String fullName, String emailAddress) {
+        super(fullName, emailAddress);
+    }
+
+    @Override
+    public double calculateFare(double baseFare) {
+        return baseFare * 0.8;
+    }
+
+    @Override
+    public void displayUserType() {
+        System.out.println("VIP User");
     }
 
     @Override
@@ -121,4 +180,6 @@ private String fullName;
        
         throw new UnsupportedOperationException("Unimplemented method 'setCvv'");
     }
+
+}
 }
